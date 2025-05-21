@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Université Daniel OUEZZIN COULIBALY - Lien Zoom</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #f39c12;
+            --dark-color: #34495e;
+            --light-color: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .event-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .event-header h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .event-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .event-details {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .detail-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .detail-content {
+            flex-grow: 1;
+        }
+        
+        .detail-content h3 {
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .detail-content p {
+            color: #666;
+        }
+        
+        .zoom-link-container {
+            background: linear-gradient(135deg, #e8f4f8, #d4e9f7);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .zoom-link-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .zoom-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #1a7dc1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .zoom-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .zoom-details {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .zoom-details p {
+            margin-bottom: 5px;
+        }
+        
+        .zoom-link {
+            display: block;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-top: 15px;
+            word-break: break-all;
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .instructions {
+            background-color: #f2f9f1;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .instructions h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .admin-panel {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .admin-panel h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .admin-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .admin-form input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .admin-form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            main {
+                padding: 20px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+            }
+            
+            .detail-icon {
+                margin-bottom: 10px;
+            }
+            
+            .admin-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj4KICA8IS0tIENlcmNsZSBleHRlcm5lIC0tPgogIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjE1MCIgcj0iMTQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDgwMDAiIHN0cm9rZS13aWR0aD0iMiIvPgogIAogIDwhLS0gQnJhbmNoZXMgZCdvbGl2aWVyIC0tPgogIDxwYXRoIGQ9Ik01MCAxNTAgQzkwIDgwIDE1MCA3MCAxNTAgNzAgQzE1MCA3MCAyMTAgODAgMjUwIDE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA4MDAwIiBzdHJva2Utd2lkdGg9IjQiLz4KICA8cGF0aCBkPSJNNTAgMTUwIEM5MCAyMjAgMTUwIDIzMCAxNTAgMjMwIEMxNTAgMjMwIDIxMCAyMjAgMjUwIDE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA4MDAwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAKICA8IS0tIENvdWxldXJzIGR1IGRyYXBlYXUgQnVya2luYWJlIC0tPgogIDxwYXRoIGQ9Ik01MCAxODAgQzkyIDIxMCAxNTAgMjIwIDE1MCAyMjAgQzE1MCAyMjAgMjA4IDIxMCAyNTAgMTgwIiBmaWxsPSIjMDA4MDAwIi8+CiAgPHBhdGggZD0iTTkwIDIwMCBDMTAzIDIwMyAxMzAgMjA1IDE1MCAyMDUgQzE3MCAyMDUgMTk3IDIwMyAyMTAgMjAwIiBmaWxsPSIjZmYwMDAwIi8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMTk1IiByPSI1IiBmaWxsPSIjZmZkNzAwIi8+CiAgCiAgPCEtLSBDaGFwZWF1IGV0IHN5bWJvbGUgZGUgY2lyY3VpdCAtLT4KICA8cmVjdCB4PSI5MCIgeT0iMTEwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMzQ5OGRiIi8+CiAgPHBhdGggZD0iTTkwIDExMCBMMTUwIDg1IDIxMCAxMTAiIGZpbGw9IiMzNDk4ZGIiLz4KICA8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjI1IiBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoIGQ9Ik0xNDAgMTMwIEMxNDAgMTMwIDE0NSAxNzAgMTYwIDE3MCBDMTcwIDE3MCAxNjUgMTQwIDE2NSAxNDAgIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0xMzAgMTUwIEwxNzAgMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0xMzUgMTQwIEwxNjUgMTQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMiIvPgogIAogIDwhLS0gRGV2aXNlIC0tPgogIDxwYXRoIGQ9Ik03MCAyNDAgQzEyMCAyNTAgMTgwIDI1MCAyMzAgMjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjgwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjMDAwMDAwIj5TY2llbnRpYTwvdGV4dD4KICA8dGV4dCB4PSIxMzUiIHk9IjI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiMwMDAwMDAiPmFuaW0gcHJvbW92ZXQ8L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjMDAwMDAwIj5Ib21pbmk8L3RleHQ+Cjwvc3ZnPg==" alt="Logo Université Daniel OUEZZIN COULIBALY" style="width: 100px; height: 100px;">
+            </div>
+            <h1>Université Daniel OUEZZIN COULIBALY</h1>
+            <p>Plateforme officielle de cours en ligne</p>
+        </header>
+        
+        <main>
+            <div class="event-container">
+                <div class="event-header">
+                    <h2>Cours en ligne : Introduction au Droit Constitutionnel</h2>
+                    <p>Séance interactive avec le Professeur Amadou Diallo</p>
+                </div>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📅</div>
+                        <div class="detail-content">
+                            <h3>Date et heure</h3>
+                            <p>Mercredi 21 mai 2025 à 10h00 (GMT)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">👨‍🏫</div>
+                        <div class="detail-content">
+                            <h3>Enseignant</h3>
+                            <p>Pr. Amadou Diallo, UFR Sciences Juridiques et Politiques</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">📚</div>
+                        <div class="detail-content">
+                            <h3>Description</h3>
+                            <p>Cette séance portera sur les principes fondamentaux du droit constitutionnel et le rôle des institutions dans l'État moderne. Nous aborderons également la séparation des pouvoirs et les différents types de constitutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">⏱️</div>
+                        <div class="detail-content">
+                            <h3>Durée</h3>
+                            <p>2 heures (10h00 - 12h00)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="zoom-link-container">
+                    <h3>Rejoindre le cours en ligne</h3>
+                    <p>Cliquez sur le bouton ci-dessous pour accéder directement à la réunion Zoom</p>
+                    
+                    <a href="https://zoom.us/j/123456789" target="_blank" class="zoom-button">Rejoindre maintenant</a>
+                    
+                    <div class="zoom-details">
+                        <p>ID de réunion: <strong>123 456 789</strong></p>
+                        <p>Code secret: <strong>UDOC2025</strong></p>
+                        <p class="zoom-link">https://zoom.us/j/123456789</p>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <h3>Comment rejoindre la réunion ?</h3>
+                    <ol>
+                        <li>Assurez-vous d'avoir l'application Zoom installée sur votre ordinateur ou appareil mobile</li>
+                        <li>Cliquez sur le bouton "Rejoindre maintenant" ou utilisez le lien Zoom</li>
+                        <li>Entrez l'ID de réunion et le code secret si demandé</li>
+                        <li>Activez votre caméra et votre microphone selon les instructions du professeur</li>
+                        <li>Utilisez la fonction "Lever la main" pour poser des questions</li>
+                    </ol>
+                </div>
+                
+                <div id="adminPanel" class="admin-panel" style="display: none;">
+                    <h3>Administration</h3>
+                    <form id="updateLinkForm" class="admin-form">
+                        <input type="password" id="adminPassword" placeholder="Mot de passe administrateur">
+                        <input type="url" id="newZoomLink" placeholder="Nouveau lien Zoom">
+                        <button type="submit">Mettre à jour</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Université Daniel OUEZZIN COULIBALY - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Fonction pour afficher le panneau d'administration
+        function toggleAdminPanel() {
+            const adminPanel = document.getElementById('adminPanel');
+            if (adminPanel.style.display === 'none') {
+                adminPanel.style.display = 'block';
+            } else {
+                adminPanel.style.display = 'none';
+            }
+        }
+        
+        // Détecter triple clic pour afficher le panneau admin
+        let clickCount = 0;
+        let clickTimer = null;
+        
+        document.querySelector('.logo').addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(function() {
+                    clickCount = 0;
+                }, 500);
+            } else if (clickCount === 3) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                toggleAdminPanel();
+            }
+        });
+        
+        // Mise à jour du lien Zoom
+        document.getElementById('updateLinkForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            const newLink = document.getElementById('newZoomLink').value;
+            
+            // Vérification simpliste du mot de passe (à remplacer par une authentification sécurisée)
+            if (password === "admin123") {
+                // Mettre à jour tous les liens Zoom sur la page
+                document.querySelector('.zoom-button').href = newLink;
+                document.querySelector('.zoom-link').textContent = newLink;
+                
+                alert("Lien Zoom mis à jour avec succès !");
+                
+                // Réinitialiser le formulaire
+                document.getElementById('adminPassword').value = "";
+                document.getElementById('newZoomLink').value = "";
+                
+                // Cacher le panneau admin
+                document.getElementById('adminPanel').style.display = 'none';
+            } else {
+                alert("Mot de passe incorrect !");
+            }
+        });
+    </script>
+</body>
+</html>
